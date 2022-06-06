@@ -23,9 +23,7 @@ adding a build and adding a building type to it.
 
 ## Expected Routes
 
-## Propert Type Routes
-
-### Medication Routes
+### Property Type Routes
 
 |      Return Type       |   Method   |                    Route                                |       Functionality       |
 |------------------------|------------|---------------------------------------------------------|---------------------------|
@@ -34,4 +32,14 @@ adding a build and adding a building type to it.
 | `PropertType`           | **POST**   | `http://localhost:8083/api/types/`                          | *Create New PropertyType*   |
 | `PropertyType`           | **PUT**    | `http://localhost:8083/api/types/{id}`                      | *Update ProperType*       |
 | `void`                 | **DELETE** | `http://localhost:8083/api/type/{id}`                        |  *Delete PropertyType*      |
- 
+
+
+###  Property Routes
+
+|      Return Type       |   Method   |                    Route                                |       Functionality       |
+|------------------------|------------|---------------------------------------------------------|---------------------------|
+| `List<Property>`         | **GET**    | `http://localhost:8083/api/type/properties`                | *Find all Propertys*    |
+| `Property`              | **GET**    | `http://localhost:8083/api/properties/{id}`                | *Find a Property by ID* |
+| `PropertType`           | **POST**   | `http://localhost:8083/api/types/{id}/properties`           | *Create New Property*   |
+| `PropertyType`           | **PUT**    | `http://localhost:8083/api/properties/{id}`               | *Update ProperType*       |
+| `void`                 | **DELETE** | `http://localhost:8083/api/types/1/properties/4`            |  *Delete PropertyType*      |
