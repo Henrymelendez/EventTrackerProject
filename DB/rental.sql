@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `property` (
   `purchase_amount` DOUBLE NULL,
   `note` VARCHAR(45) NULL,
   `lease_status` VARCHAR(45) NULL,
-  `type_id` INT NULL,
+  `type_id` INT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   INDEX `fk_property_type_idx` (`type_id` ASC),
   CONSTRAINT `fk_property_type`
@@ -66,7 +66,8 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rentaldb`;
-INSERT INTO `type` (`id`, `name`) VALUES (1, 'Condo');
+INSERT INTO `type` (`id`, `name`) VALUES (1, 'House');
+INSERT INTO `type` (`id`, `name`) VALUES (2, 'Condo');
 
 COMMIT;
 

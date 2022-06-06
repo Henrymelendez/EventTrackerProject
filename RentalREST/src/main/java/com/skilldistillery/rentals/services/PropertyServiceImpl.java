@@ -74,18 +74,18 @@ public class PropertyServiceImpl implements PropertyService {
 			managed.setPurchaseAmount(property.getPurchaseAmount());
 			managed.setNote(property.getNote());
 			managed.setLeaseStatus(property.getLeaseStatus());
-			if(property.getProperties() == null) {
-				PropertyType DEFAULT_PROPERTY_TYPE = new PropertyType();
-				DEFAULT_PROPERTY_TYPE.setId(1);
+			if(property.getProperties() != null) {
+				managed.setProperties(property.getProperties());
 				
-				managed.setProperties(DEFAULT_PROPERTY_TYPE);
 			}
 			
 			propRepo.save(managed);
 			return managed;
 			
+		} else {
+			
+			return null;
 		}
-		return null;
 	}
 	
 	
