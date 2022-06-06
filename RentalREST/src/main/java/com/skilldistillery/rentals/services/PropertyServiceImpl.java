@@ -5,10 +5,8 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-
 import com.skilldistillery.rentals.entities.Property;
+import com.skilldistillery.rentals.entities.PropertyType;
 import com.skilldistillery.rentals.repositories.PropertyRepository;
 
 @Service
@@ -25,8 +23,12 @@ public class PropertyServiceImpl implements PropertyService {
 	}
 
 	@Override
-	public Property create(Property property) {
+	public Property create(Property property, int id) {
 		if(property != null) {
+			PropertyType propType = new PropertyType();
+			propType.setId(id);
+			property.setProperties(propType);
+			
 			propRepo.save(property);
 			
 			
@@ -46,9 +48,12 @@ public class PropertyServiceImpl implements PropertyService {
 	}
 
 	@Override
-	public boolean deleteProperty(int id) {
-		propRepo.deleteById(id);
-		if(show(id) == null) {
+	public boolean deleteProperty(int id, int propertyId) {
+		
+		Property prop = show(propertyId);
+		
+		if(prop != null && prop.getProperties().getId() == propertyId) {
+			propRepo.deleteById(id);
 			return true;
 		}
 		
@@ -69,7 +74,12 @@ public class PropertyServiceImpl implements PropertyService {
 			managed.setPurchaseAmount(property.getPurchaseAmount());
 			managed.setNote(property.getNote());
 			managed.setLeaseStatus(property.getLeaseStatus());
-			managed.setPropertyType(property.getPropertyType());
+			if(property.getProperties() == null) {
+				PropertyType DEFAULT_PROPERTY_TYPE = new PropertyType();
+				DEFAULT_PROPERTY_TYPE.setId(1);
+				
+				managed.setProperties(DEFAULT_PROPERTY_TYPE);
+			}
 			
 			propRepo.save(managed);
 			return managed;

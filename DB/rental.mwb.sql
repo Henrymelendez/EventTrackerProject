@@ -16,18 +16,6 @@ CREATE SCHEMA IF NOT EXISTS `rentaldb` DEFAULT CHARACTER SET utf8 ;
 USE `rentaldb` ;
 
 -- -----------------------------------------------------
--- Table `type`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `type` ;
-
-CREATE TABLE IF NOT EXISTS `type` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `property`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `property` ;
@@ -40,12 +28,24 @@ CREATE TABLE IF NOT EXISTS `property` (
   `purchase_amount` DOUBLE NULL,
   `note` VARCHAR(45) NULL,
   `lease_status` VARCHAR(45) NULL,
-  `type_id` INT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `type`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `type` ;
+
+CREATE TABLE IF NOT EXISTS `type` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `property_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_property_type_idx` (`type_id` ASC),
-  CONSTRAINT `fk_property_type`
-    FOREIGN KEY (`type_id`)
-    REFERENCES `type` (`id`)
+  INDEX `fk_type_property_idx` (`property_id` ASC),
+  CONSTRAINT `fk_type_property`
+    FOREIGN KEY (`property_id`)
+    REFERENCES `property` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -62,21 +62,21 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
--- Data for table `type`
+-- Data for table `property`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rentaldb`;
-INSERT INTO `type` (`id`, `name`) VALUES (1, 'Condo');
+INSERT INTO `property` (`id`, `property_address`, `rental_amount`, `purchase_date`, `purchase_amount`, `note`, `lease_status`) VALUES (1, '123 Elm Street', 1900, '2001-04-04', 200000, 'this is a house', 'active');
 
 COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `property`
+-- Data for table `type`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rentaldb`;
-INSERT INTO `property` (`id`, `property_address`, `rental_amount`, `purchase_date`, `purchase_amount`, `note`, `lease_status`, `type_id`) VALUES (1, '123 Elm Street', 1900, '2001-04-04', 200000, 'this is a house', 'active', 1);
+INSERT INTO `type` (`id`, `name`, `property_id`) VALUES (1, 'Condo', 1);
 
 COMMIT;
 

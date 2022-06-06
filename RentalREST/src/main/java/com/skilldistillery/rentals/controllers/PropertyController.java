@@ -1,8 +1,6 @@
 package com.skilldistillery.rentals.controllers;
 
 import java.util.List;
-import java.util.Optional;
-
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,15 +26,15 @@ public class PropertyController {
 	
 	
 	
-	@GetMapping("properties")
+	@GetMapping("type/properties")
 	public List<Property> index(){
 		return propServ.index();
 	}
 	
-	@PostMapping("properties")
-	public Property createProperty(@RequestBody Property property, HttpServletResponse res) {
+	@PostMapping("types/{id}/properties")
+	public Property createProperty(@RequestBody Property property,@PathVariable int id, HttpServletResponse res) {
 		if(property != null) {
-			propServ.create(property);
+			propServ.create(property, id);
 			res.setStatus(201);
 			return property;
 		}else {
@@ -54,14 +52,17 @@ public class PropertyController {
 	}
 	
 	
-	@DeleteMapping("properties/{id}")
-	public boolean deletePropertyId(@PathVariable int id, HttpServletResponse res) {
+	@DeleteMapping("types/{id}/properties/{pid}")
+	public boolean deleteProperty(@PathVariable int id,@PathVariable int pid,  HttpServletResponse res) {
 		
-		propServ.deleteProperty(id);
-		if(propServ.show(id) == null) {
-			return true;
-		}
-		return false;
+			propServ.deleteProperty(pid,id);
+			if(propServ.show(pid) == null) {
+				res.setStatus(200);
+				return true;
+			}
+			res.setStatus(404);
+			return false;
+		
 	}
 	
 	@PutMapping("properties/{id}")

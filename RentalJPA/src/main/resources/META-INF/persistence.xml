@@ -8,6 +8,7 @@
     <!-- begin Entities -->
 	
 	<class>com.skilldistillery.rentals.entities.Property</class>
+	<class>com.skilldistillery.rentals.entities.PropertyType</class>
 
 	
 

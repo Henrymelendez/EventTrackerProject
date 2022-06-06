@@ -8,6 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Property {
@@ -16,8 +21,7 @@ public class Property {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name ="property_type")
-	private String PropertyType;
+
 	
 	@Column(name = "property_address")
 	private String propertyAddress;
@@ -37,6 +41,9 @@ public class Property {
 	private String leaseStatus;
 	
 	
+	@ManyToOne
+	@JoinColumn(name = "type_id")
+	private PropertyType properties;
 
 	
 
@@ -52,18 +59,8 @@ public class Property {
 		this.id = id;
 	}
 
-	public String getPropertyType() {
-		return PropertyType;
-	}
 
-	public void setPropertyType(String propertyType) {
-		PropertyType = propertyType;
-	}
 
-	@Override
-	public String toString() {
-		return "Property [id=" + id + ", PropertyType=" + PropertyType + "]";
-	}
 
 	@Override
 	public int hashCode() {
@@ -129,6 +126,16 @@ public class Property {
 	public void setLeaseStatus(String leaseStatus) {
 		this.leaseStatus = leaseStatus;
 	}
+
+	public PropertyType getProperties() {
+		return properties;
+	}
+
+	public void setProperties(PropertyType properties) {
+		this.properties = properties;
+	}
+
+	
 	
 	
 	

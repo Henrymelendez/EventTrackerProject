@@ -1,11 +1,9 @@
 package com.skilldistillery.rentals.entities;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-
 import javax.persistence.Persistence;
 
 import org.junit.jupiter.api.AfterAll;
@@ -14,10 +12,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class PropertyTest {
+class PropertyTypeTypeTest {
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Property prop;
+	private PropertyType ptype;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,20 +30,18 @@ class PropertyTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		prop = em.find(Property.class, 1);
+		ptype = em.find(PropertyType.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
 	}
-	
 
 	@Test
-	void test_property_Mapping() {
-		
-		assertEquals(1, prop.getId());
-		assertEquals("Condo", prop.getProperties().getName());
+	void test_property_type_mapping() {
+		assertEquals("Condo", ptype.getName());
+		assertEquals(1, ptype.getPropertyId().get(0).getId());
 	}
 
 }
