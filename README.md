@@ -43,3 +43,13 @@ adding a build and adding a building type to it.
 | `PropertType`           | **POST**   | `http://localhost:8083/api/types/{id}/properties`           | *Create New Property*   |
 | `PropertyType`           | **PUT**    | `http://localhost:8083/api/properties/{id}`               | *Update ProperType*       |
 | `void`                 | **DELETE** | `http://localhost:8083/api/types/1/properties/4`            |  *Delete PropertyType*      |
+
+
+
+## Future Implematation 
+This project is currently incomplete it needs tables and routes for maintenance, income, rental, contractors, tenants, and a table for rental history 
+this would allow a property manager or owner to keep track of rent payments, expense on individual units, and who lives where and when leases expire.
+this would make tracking the all that information seemlessly reducing the amount of paperwork and time the owner spends inputing information into spreadsheet and tracking
+returns on investment. 
+
+
