@@ -1,11 +1,9 @@
 package com.skilldistillery.rentals.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-
 import javax.persistence.Persistence;
 
 import org.junit.jupiter.api.AfterAll;
@@ -45,7 +43,7 @@ class PropertyTest {
 	void test_property_Mapping() {
 		
 		assertEquals(1, prop.getId());
-		assertEquals("Condo", prop.getProperties().getName());
+		
 	}
 
 }

@@ -40,7 +40,7 @@ class PropertyTypeTypeTest {
 
 	@Test
 	void test_property_type_mapping() {
-		assertEquals("Condo", ptype.getName());
+		assertEquals("House", ptype.getName());
 		assertEquals(1, ptype.getPropertyId().get(0).getId());
 	}
 
