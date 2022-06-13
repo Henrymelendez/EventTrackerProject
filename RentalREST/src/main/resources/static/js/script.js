@@ -11,6 +11,7 @@ function init(){
 	console.log("In Init()");
 	loadAllProperties();
 	document.addForm.add.addEventListener('click', addProperty);
+	document.form.delete.addEventListener('click', de)
 	
 	
 }
@@ -101,9 +102,10 @@ function displayProperties(props){
 		
 		let hiddeninput = document.createElement('input');
 		hiddeninput.type="hidden";
-		hiddeninput.id = "see"
+		hiddeninput.id = "see"+v.id
 		hiddeninput.name='pId';
 		hiddeninput.value=v.id
+		hiddeninput.className='delete'
 		
 		let deletebutton = document.createElement('button')
 		deletebutton.className="btn btn-danger fa-solid fa-trash";
@@ -205,9 +207,12 @@ function deleteProp(filmId){
 
 function de(evt){
 	evt.preventDefault();
-	let form = document.getElementById('see').value;
+	console.log(evt)
+	
+	
+	deleteProp(evt.target.id)
+	
 	console.log(form)
-	deleteProp(form);
 }
 
 
