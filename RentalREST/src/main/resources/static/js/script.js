@@ -11,7 +11,7 @@ function init(){
 	console.log("In Init()");
 	loadAllProperties();
 	document.addForm.add.addEventListener('click', addProperty);
-	document.form1.button.addEventListener('click', deleteProp);
+	
 	
 }
 
@@ -40,9 +40,9 @@ function loadAllProperties(){
 
 
 function displayError(message){
-	let datDiv = document.getElementById('detail');
+	let datDiv = document.getElementsByName('detail')
 	
-	datDiv.textContent= message
+	datDiv.textContent= message;
 }
 
 
@@ -97,7 +97,7 @@ function displayProperties(props){
 		p2.textContent = v.purchaseAmount;
 		
 		let formd= document.createElement('form')
-		formd.name="form"+v.id;
+		formd.id="form";
 		
 		let hiddeninput = document.createElement('input');
 		hiddeninput.type="hidden";
@@ -141,7 +141,7 @@ function displayProperties(props){
 function addProperty(evt){
 	
 	evt.preventDefault();
-	let form = document.myForm;
+	let form = document.addForm;
 	
 	let newProperty = {
 		propertyAddress: form.propertyAddress.value,
@@ -151,7 +151,7 @@ function addProperty(evt){
 		note: form.note.value,
 		leaseStatus: form.leaseStatus.value
 	};
-	
+	console.log(newProperty)
 	
 	sendNewProp(newProperty);
 };
@@ -175,7 +175,7 @@ function sendNewProp(sendNewProp){
 		}
 	}
 	xhr.setRequestHeader("Content-type", "application/json"); 
-	xhr.send(JSON.stringify(prop));
+	xhr.send(JSON.stringify(sendNewProp));
 	
 }
 
