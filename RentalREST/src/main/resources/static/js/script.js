@@ -11,7 +11,7 @@ function init(){
 	console.log("In Init()");
 	loadAllProperties();
 	document.addForm.add.addEventListener('click', addProperty);
-	document.form1.del.addEventListener('click', de);
+	document.form1.button.addEventListener('click', deleteProp);
 	
 }
 
@@ -42,7 +42,7 @@ function loadAllProperties(){
 function displayError(message){
 	let datDiv = document.getElementById('detail');
 	
-	datDiv.textContent=message;
+	datDiv.textContent= message
 }
 
 
@@ -97,7 +97,7 @@ function displayProperties(props){
 		p2.textContent = v.purchaseAmount;
 		
 		let formd= document.createElement('form')
-		formd.name="form1";
+		formd.name="form"+v.id;
 		
 		let hiddeninput = document.createElement('input');
 		hiddeninput.type="hidden";
@@ -107,6 +107,7 @@ function displayProperties(props){
 		let deletebutton = document.createElement('button')
 		deletebutton.className="btn btn-danger fa-solid fa-trash";
 		deletebutton.name="del"
+		deletebutton.type="submit"
 		formd.appendChild(hiddeninput);
 		formd.appendChild(deletebutton)
 		
@@ -201,7 +202,7 @@ function deleteProp(filmId){
 
 function de(evt){
 	evt.preventDefault();
-	let form = document.form1.pId.value;
+	let form = document.form1.value;
 	console.log(form)
 	deleteProp(form);
 }
