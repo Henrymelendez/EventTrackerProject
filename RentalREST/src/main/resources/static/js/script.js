@@ -10,6 +10,8 @@ function init(){
 	
 	console.log("In Init()");
 	loadAllProperties();
+	document.addForm.add.addEventListener('click', addProperty);
+	document.form1.button.submit.addEventListener('click', de);
 	
 }
 
@@ -26,7 +28,7 @@ function loadAllProperties(){
 			}
 		}
 		else {
-			diplaydisplayError("Error Creating property"+ xhr.status + " " + xhr.statusText);
+			displayError("Error Creating property"+ xhr.status + " " + xhr.statusText);
 
 		}
 			
@@ -38,9 +40,9 @@ function loadAllProperties(){
 
 
 function displayError(message){
-	let datDiv = document.getElementById('form-card');
-	datDiv.textContent = '';
-	datDiv.textContent = message;
+	let datDiv = document.getElementById('detail');
+	
+	datDiv.textContent=message;
 }
 
 
@@ -95,10 +97,13 @@ function displayProperties(props){
 		p2.textContent = v.purchaseAmount;
 		
 		let formd= document.createElement('form')
+		formd.name="form1";
+		
 		let hiddeninput = document.createElement('input');
 		hiddeninput.type="hidden";
 		hiddeninput.name='pId';
 		hiddeninput.value=v.id
+		
 		let deletebutton = document.createElement('button')
 		deletebutton.className="btn btn-danger fa-solid fa-trash";
 		formd.appendChild(hiddeninput);
@@ -179,11 +184,25 @@ function deleteProp(filmId){
 	
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState === 4){
-			
+			if(xhr.status === 200 || xhr.status === 201){
+				let prop = JSON.parse(xhr.responseText);
+				loadAllProperties()
+			}
+			else {
+				displayError("Error Deleting Property"+ xhr.status + " " + xhr.statusText);
+			}
 		}
 	};
 	
-	
+	xhr.send();
+}
+
+
+function de(evt){
+	evt.preventDefault();
+	let form = document.form1;
+	console.log(form)
+	deleteProp(form.pId.value);
 }
 
 
