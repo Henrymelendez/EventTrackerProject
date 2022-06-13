@@ -101,6 +101,7 @@ function displayProperties(props){
 		
 		let hiddeninput = document.createElement('input');
 		hiddeninput.type="hidden";
+		hiddeninput.id = "see"
 		hiddeninput.name='pId';
 		hiddeninput.value=v.id
 		
@@ -166,7 +167,9 @@ function sendNewProp(sendNewProp){
 		if(xhr.readyState === 4){
 			if(xhr.status === 200 || xhr.status === 201){
 				let prop = JSON.parse(xhr.responseText);
+				loadAllProperties();
 				displayProperties(prop);
+				
 				
 			}
 			else {
@@ -202,7 +205,7 @@ function deleteProp(filmId){
 
 function de(evt){
 	evt.preventDefault();
-	let form = document.form1.value;
+	let form = document.getElementById('see').value;
 	console.log(form)
 	deleteProp(form);
 }
