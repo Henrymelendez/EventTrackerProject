@@ -187,7 +187,7 @@ function deleteProp(filmId){
 		if(xhr.readyState === 4){
 			if(xhr.status === 200 || xhr.status === 201){
 				let prop = JSON.parse(xhr.responseText);
-				loadAllProperties()
+				
 			}
 			else {
 				displayError("Error Deleting Property"+ xhr.status + " " + xhr.statusText);
@@ -201,9 +201,9 @@ function deleteProp(filmId){
 
 function de(evt){
 	evt.preventDefault();
-	let form = evt.target.form1;
+	let form = document.form1.pId.value;
 	console.log(form)
-	deleteProp(form.pId.value);
+	deleteProp(form);
 }
 
 
