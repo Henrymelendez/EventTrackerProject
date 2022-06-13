@@ -7,6 +7,7 @@
 <link rel="stylesheet" 
 href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -32,11 +33,11 @@ href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384
       <i class="fas fa-times sidenav__brand-close"></i>
     </div>
     <ul class="sidenav__list">
-      <li class="sidenav__list-item">Item One</li>
-      <li class="sidenav__list-item">Item Two</li>
-      <li class="sidenav__list-item">Item Three</li>
-      <li class="sidenav__list-item">Item Four</li>
-      <li class="sidenav__list-item">Item Five</li>
+      <li class="sidenav__list-item"></li>
+      <li class="sidenav__list-item"></li>
+      <li class="sidenav__list-item"></li>
+      <li class="sidenav__list-item"></li>
+      <li class="sidenav__list-item"></li>
     </ul>
   </aside>
 
@@ -50,12 +51,12 @@ href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384
 
     <div class="main-cards">
       <div class="card">
-       <table class="table table">
+       <table class="table table-hover" id="table1">
   <thead>
     <tr>
       <th scope="col">Id</th>
       <th scope="col">Address</th>
-      <th scope="col">Rent Ammount</th>
+      <th scope="col">Rent Amount</th>
       <th scope="col">Lease Status</th>
     </tr>
   </thead>
@@ -65,18 +66,43 @@ href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384
   </tbody>
 </table> 
       </div>
-      <div class="card">Card</div>
-      <div class="card">Card</div>
+      <div class="card" name="form-card">
+      <h1>Add a Property</h1>
+      <form name="addForm">
+    
+      <input type="text" name="propertyAddress" placeholder="Property Address">
+      <input type="number" name="rentalAmount" placeholder="rental Amount per Month">
+      <input type="datetime" name="purchaseDate" placeholder="Purchase Date">
+      <input type="number" name="purchaseAmount" placeholder="Purchase Amount">
+      <input type="text" name="note" placeholder="Any Notes">
+      <input type="text" name="leaseStatus" placeholder="lease Status">
+      <button name="add" class="fa fa-success"> Add a Property</button>
+      </form>
+      
+      
+      </div>
+      
+      
+      
+      <div class="card" name="detail">
+      <h1>Property Details</h1>
+      
+  
+     </ul>
+      
+      </div>
     </div>
   </main>
 
   <footer class="footer">
-    <div class="footer__copyright">&copy; 2018 MTH</div>
+    <div class="footer__copyright">&copy; </div>
     <div class="footer__signature">Made with love by pure genius</div>
   </footer>
 </div>
 <!-- partial -->
-  <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script><script  src="js/script.js"></script>
-
+  <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script  src="js/script.js"></script>
+	
 </body>
 </html>

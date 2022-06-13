@@ -154,14 +154,13 @@ body {
   height: 265px;
 }
 
-.footer {
-  grid-area: footer;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 16px;
-  background-color: #648ca6;
-}
+
+
+
+
+
+
+
 
 /* Non-mobile styles, 750px breakpoint */
 @media only screen and (min-width: 46.875em) {
@@ -195,3 +194,19 @@ body {
     column-count: 2;
   }
 }
+
+
+
+
+.footer {
+  grid-area: footer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  background-color: #648ca6;
+}
+
+
+
+
