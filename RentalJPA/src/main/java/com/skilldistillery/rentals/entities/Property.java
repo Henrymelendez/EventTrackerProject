@@ -41,9 +41,8 @@ public class Property {
 	private String leaseStatus;
 	
 	
-	@ManyToOne
-	@JoinColumn(name = "type_id")
-	private PropertyType properties;
+	@Column(name ="property_type")
+	private String propertyType;
 
 	
 
@@ -127,13 +126,15 @@ public class Property {
 		this.leaseStatus = leaseStatus;
 	}
 
-	public PropertyType getProperties() {
-		return properties;
+	public String getPropertyType() {
+		return propertyType;
 	}
 
-	public void setProperties(PropertyType properties) {
-		this.properties = properties;
+	public void setPropertyType(String propertyType) {
+		this.propertyType = propertyType;
 	}
+
+	
 
 	
 	

@@ -8,10 +8,10 @@ public interface PropertyService {
 	
 	List<Property> index();
 	
-	Property create(Property property, int id);
+	Property create(Property property);
 	Property show(int id);
 	
-	boolean deleteProperty(int id, int proopertyId);
+	boolean deleteProperty(int id);
 	
 	Property update(Property property, int id);
 

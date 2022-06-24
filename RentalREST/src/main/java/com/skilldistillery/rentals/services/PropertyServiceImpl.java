@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.skilldistillery.rentals.entities.Property;
-import com.skilldistillery.rentals.entities.PropertyType;
 import com.skilldistillery.rentals.repositories.PropertyRepository;
 
 @Service
@@ -23,11 +22,8 @@ public class PropertyServiceImpl implements PropertyService {
 	}
 
 	@Override
-	public Property create(Property property, int id) {
+	public Property create(Property property) {
 		if(property != null) {
-			PropertyType propType = new PropertyType();
-			propType.setId(id);
-			property.setProperties(propType);
 			
 			propRepo.save(property);
 			
@@ -48,11 +44,11 @@ public class PropertyServiceImpl implements PropertyService {
 	}
 
 	@Override
-	public boolean deleteProperty(int id, int propertyId) {
+	public boolean deleteProperty(int id) {
 		
-		Property prop = show(propertyId);
+		Property prop = show(id);
 		
-		if(prop != null && prop.getProperties().getId() == propertyId) {
+		if(prop != null && prop.getId() == id) {
 			propRepo.deleteById(id);
 			return true;
 		}
@@ -74,10 +70,7 @@ public class PropertyServiceImpl implements PropertyService {
 			managed.setPurchaseAmount(property.getPurchaseAmount());
 			managed.setNote(property.getNote());
 			managed.setLeaseStatus(property.getLeaseStatus());
-			if(property.getProperties() != null) {
-				managed.setProperties(property.getProperties());
-				
-			}
+			
 			
 			propRepo.save(managed);
 			return managed;

@@ -1,9 +1,11 @@
 package com.skilldistillery.rentals.controllers;
 
 import java.util.List;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +21,7 @@ import com.skilldistillery.rentals.services.PropertyService;
 
 @RequestMapping("api")
 @RestController
+@CrossOrigin({"*", "http://localhost"})
 public class PropertyController {
 	
 	@Autowired
@@ -26,15 +29,15 @@ public class PropertyController {
 	
 	
 	
-	@GetMapping("type/properties")
+	@GetMapping("properties")
 	public List<Property> index(){
 		return propServ.index();
 	}
 	
-	@PostMapping("types/{id}/properties")
-	public Property createProperty(@RequestBody Property property,@PathVariable int id, HttpServletResponse res) {
+	@PostMapping("properties")
+	public Property createProperty(@RequestBody Property property, HttpServletResponse res) {
 		if(property != null) {
-			propServ.create(property, id);
+			propServ.create(property);
 			res.setStatus(201);
 			return property;
 		}else {
@@ -52,11 +55,11 @@ public class PropertyController {
 	}
 	
 	
-	@DeleteMapping("types/{id}/properties/{pid}")
-	public boolean deleteProperty(@PathVariable int id,@PathVariable int pid,  HttpServletResponse res) {
+	@DeleteMapping("properties/{id}")
+	public boolean deleteProperty(@PathVariable int id,  HttpServletResponse res) {
 		
-			propServ.deleteProperty(pid,id);
-			if(propServ.show(pid) == null) {
+			propServ.deleteProperty(id);
+			if(propServ.show(id) == null) {
 				res.setStatus(200);
 				return true;
 			}

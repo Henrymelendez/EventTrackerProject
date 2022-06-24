@@ -1,0 +1,226 @@
+
+
+
+
+
+
+	<div class="row">
+		<div class="col-md-12">
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4">
+			<div class="card bg-default ">
+
+          <div class="card-counter primary">
+            <i class="fa fa-code-fork"></i>
+            <span class="count-numbers">{{PropertyAverage(properties, 'purchaseAmount') | currency}}</span>
+            <span class="count-name">Property Cost Average</span>
+          </div>
+
+
+			</div>
+		</div>
+		<div class="col-md-4">
+
+          <div class="card-counter danger">
+            <i class="fa fa-ticket"></i>
+            <span class="count-numbers">{{PropertySum(properties, 'purchaseAmount') | currency}}</span>
+            <span class="count-name">   Propeties Cost Total</span>
+          </div>
+
+		</div>
+		<div class="col-md-3">
+      <div class="card-counter primary">
+        <i class="fa fa-code-fork"></i>
+        <span class="count-numbers">{{properties.length}}</span>
+        <span class="count-name">Total Properties </span>
+      </div>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8">
+      <table class="table table-hover table-striped my-5">
+				<thead>
+					<tr>
+						<th>
+							#Id
+						</th>
+						<th>
+							address
+						</th>
+						<th>
+							lease Status
+						</th>
+						<th>
+              Purchase Amount
+						</th>
+            <th>
+              Purchase Date
+            </th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let prop of properties">
+            <td (click)="displayProperty(prop)">{{prop.id}}</td>
+            <td (click)="displayProperty(prop)">{{prop.propertyAddress}}</td>
+            <td (click)="displayProperty(prop)">{{prop.leaseStatus}}</td>
+            <td (click)="displayProperty(prop)">{{prop.purchaseAmount}}</td>
+            <td (click)="displayProperty(prop)">{{prop.purchaseDate | date: 'fullDate'}}</td>
+            <td class="list-inline-item"> <button class="btn btn-warning"><i class="fa fa-edit" (click)=" selectedProp = prop;  setEditProp()  ;"></i></button></td>
+            <td class="list-inline-item"> <button class="btn btn-danger" (click)="deleteProperty(prop.id)"><i class="fa fa-trash"></i></button></td>
+
+					</tr>
+				</tbody>
+			</table>
+
+
+
+		</div>
+
+		<! -->
+
+    <div class="col-md-3 my-5">
+      <form role="form" *ngIf="!selectedProp && !editProp">
+        <h3>Add Property</h3>
+				<div class="form-group">
+
+					<label for="exampleInputEmail1">
+					Address
+					</label>
+					<input type="text" class="form-control" id="exampleInputEmail1" [(ngModel)]="newProp.propertyAddress" name="propertyAddress" />
+				</div>
+				<div class="form-group">
+
+					<label for="exampleInputPassword1">
+            Rental Amount Per month
+					</label>
+					<input type="number" class="form-control" id="exampleInputPassword1" name="rentalAmount" [(ngModel)]="newProp.rentalAmount" />
+
+
+				</div>
+
+        <div class="form-group">
+          <label for="purchaseAmount">
+            Purchase Amount
+          </label>
+          <input type="number" class="form-control" name="purchaseAmount" [(ngModel)]="newProp.purchaseAmount">
+        </div>
+
+
+
+
+        <div class="form-group">
+          <label for="note">note</label>
+          <textarea class="form-control" placeholder="Notes" name="note" [(ngModel)]="newProp.note"></textarea>
+        </div>
+
+
+				<div class="checkbox form-group">
+
+					<label class="form-group">Active ?</label>
+						<input type="text"  class="form-group" name="leaseStatus" [(ngModel)]="newProp.leaseStatus">
+
+				</div>
+				<button type="submit" class="btn btn-primary"  (click)="addProperty(newProp)">
+					Submit
+				</button>
+
+
+			</form>
+
+      <!--edit Form-->
+      <form role="form" *ngIf="editProp">
+        <h3>Edit Property Infromation</h3>
+				<div class="form-group">
+
+					<label for="exampleInputEmail1">
+					Address
+					</label>
+					<input type="text" name="propertyAddress" [(ngModel)]="editProp.propertyAddress" class="form-control" id="exampleInputEmail1"  />
+				</div>
+				<div class="form-group">
+
+					<label for="exampleInputPassword1">
+            Rental Amount Per month
+					</label>
+					<input type="number" name="rentalAmount" [(ngModel)]="editProp.rentalAmount" class="form-control" id="exampleInputPassword1" />
+
+
+				</div>
+
+        <div class="form-group">
+          <label for="purchaseAmount">
+            Purchase Amount
+          </label>
+          <input type="number" [(ngModel)]="editProp.purchaseAmount" class="form-control"  name="purchaseAmount" >
+        </div>
+
+
+
+
+        <div class="form-group">
+          <label for="note">note</label>
+          <textarea [(ngModel)]="editProp.note" class="form-control" placeholder="Notes" name="note"></textarea>
+        </div>
+
+
+				<div class="checkbox form-group">
+
+					<label class="form-group" >Active ?</label>
+						<input type="text" name="leaseStatus" [(ngModel)]="editProp.leaseStatus"  class="form-group"/>
+
+				</div>
+				<button  class="btn btn-primary" (click)="updateProperty(editProp)" >
+					Edit Submit
+				</button>
+        <button class="btn btn-success" (click)="editProp = null">Cancel</button>
+
+
+
+
+
+
+
+
+
+
+			</form>
+
+
+
+
+      <!--Detail Card-->
+
+
+      <div class="card " *ngIf="selectedProp && !editProp">
+        <div class="card-body">
+          <h3>Property Details</h3>
+          <h5 class="card-title">Property :{{selectedProp.propertyAddress}}  Details</h5>
+          <h5 class="card-body">Rent Per Month: {{selectedProp.rentalAmount}}</h5>
+          <h5 class="card-body">Property Type: {{selectedProp.propertyType}}</h5>
+          <h5 class="card-body">Notes: {{selectedProp.note}}</h5>
+          <button (click)="displayTable()" class="btn btn-primary">Display From</button>
+
+        </div>
+
+      </div>
+
+
+		</div>
+	</div>
+

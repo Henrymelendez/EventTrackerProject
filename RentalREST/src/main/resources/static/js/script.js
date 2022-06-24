@@ -11,7 +11,7 @@ function init(){
 	console.log("In Init()");
 	loadAllProperties();
 	document.addForm.add.addEventListener('click', addProperty);
-	document.form.delete.addEventListener('click', de)
+	document.form.del.addEventListener('click', de)
 	
 	
 }
@@ -208,9 +208,9 @@ function deleteProp(filmId){
 function de(evt){
 	evt.preventDefault();
 	console.log(evt)
+	let form = document.getElementById('see'+ e.target.id)
 	
-	
-	deleteProp(evt.target.id)
+	deleteProp(form)
 	
 	console.log(form)
 }
