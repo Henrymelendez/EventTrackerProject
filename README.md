@@ -23,15 +23,6 @@ adding a build and adding a building type to it.
 
 ## Expected Routes
 
-### Property Type Routes
-
-|      Return Type       |   Method   |                    Route                                |       Functionality       |
-|------------------------|------------|---------------------------------------------------------|---------------------------|
-| `List<PropertyType>`     | **GET**    | `http://localhost:8083/api/types           `                | *Find all Property Types*    |
-| `PropertyType`           | **GET**    | `http://localhost:8083/api/types/{id}`                     | *Find a ProperyType by ID* |
-| `PropertType`           | **POST**   | `http://localhost:8083/api/types/`                          | *Create New PropertyType*   |
-| `PropertyType`           | **PUT**    | `http://localhost:8083/api/types/{id}`                      | *Update ProperType*       |
-| `void`                 | **DELETE** | `http://localhost:8083/api/type/{id}`                        |  *Delete PropertyType*      |
 
 
 ###  Property Routes
